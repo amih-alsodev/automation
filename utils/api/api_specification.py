@@ -9,7 +9,7 @@ def create_specification(playwright: Playwright, payload: dict, site_token: str,
     :param payload: JSON data
     :param site_token: Identifier specifying which site will be loaded
     :param api_token: API authentication token
-    :return: JSON response containing category.
+    :return: JSON response containing specification.
     :raises AssertionError: If the API response is not successful. (response.ok == False).
     """
     api_request_context = playwright.request.new_context(
@@ -119,12 +119,12 @@ def update_one_key_of_specification_with_id(playwright: Playwright, specificatio
     return response_body
 
 
-def delete_specification_by_id(playwright: Playwright, category_id: str, site_token: str, api_token: str):
+def delete_specification_by_id(playwright: Playwright, specification_id: str, site_token: str, api_token: str):
     """
-    Performs an API request to delete category with specified ID.
+    Performs an API request to delete specification with specified ID.
 
     :param playwright: Playwright object used to create the API request context.
-    :param category_id: The ID of the category to delete.
+    :param specification_id: The ID of the category to delete.
     :param site_token: Identifier specifying which site will be loaded
     :param api_token: API authentication token
     :raises AssertionError: If the API response is not successful. (response.ok == False).
@@ -133,7 +133,7 @@ def delete_specification_by_id(playwright: Playwright, category_id: str, site_to
         base_url="https://stage.admin.ecom.md"
     )
     response = api_request_context.delete(
-        f"/external/specification/{category_id}/",
+        f"/external/specification/{specification_id}/",
         headers={
             "token": site_token,
             "Content-Type": "application/json",
