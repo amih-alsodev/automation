@@ -16,7 +16,7 @@ def create_product(playwright: Playwright, payload: dict, site_token: str, api_t
         base_url="https://stage.admin.ecom.md"
     )
     response = api_request_context.post(
-        f"/external/product/bulk-create/",
+        "/external/product/bulk-create/",
         data=payload,
         headers={
             "token": site_token,

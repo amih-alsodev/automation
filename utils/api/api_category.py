@@ -16,7 +16,7 @@ def create_category(playwright: Playwright, payload: dict, site_token: str, api_
         base_url="https://stage.admin.ecom.md"
     )
     response = api_request_context.post(
-        f"/external/category/bulk-create/",
+        "/external/category/bulk-create/",
         data=payload,
         headers={
             "token": site_token,
