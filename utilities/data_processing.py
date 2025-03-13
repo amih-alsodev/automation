@@ -80,3 +80,8 @@ class DataProcessing:
             file_data = json.load(f)
             required_list = file_data[list_title]
         return required_list
+
+    def get_credentials_of_site(self, site_list, site_name):
+        for site in site_list:
+            if site["project"] == site_name:
+                return site

@@ -14,9 +14,12 @@ def test_create_product_with_full_data(playwright: Playwright):
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     json_data = payloads_list[0]["product"][0]["create_product_with_full_data"]
+
+    data_processing.get_credentials_of_site(site_credentials_list, "sportline")
 
     response = api_product.create_product(playwright, json_data, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
@@ -30,14 +33,16 @@ def test_create_product_with_only_req_data(playwright: Playwright):
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     json_data = payloads_list[0]["product"][0]["create_product_with_only_req_data"]
 
     response = api_product.create_product(playwright, json_data, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
     response_body = response.json()
-    product_id = response_body["id"]
+    product_data = response_body[0]
+    product_id = product_data["id"]
     response = api_product.delete_product_by_id(playwright, product_id, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
 
@@ -48,8 +53,9 @@ def test_create_product_with_empty_data(playwright: Playwright):
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     json_data = payloads_list[0]["product"][0]["create_product_with_empty_data"]
 
     response = api_product.create_product(playwright, json_data, site_token, api_token)
@@ -100,8 +106,9 @@ def test_update_product_price(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
     response_body = response.json()
@@ -121,9 +128,19 @@ def test_update_product_quantity(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
-    response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
+    payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
+    json_data = payloads_list[0]["product"][0]["create_product_with_only_req_data"]
+
+    response = api_product.create_product(playwright, json_data, site_token, api_token)
+    assert response.ok, f"API request failed with status {response.status}: {response.text()}"
+    response_body = response.json()
+    product_data = response_body[0]
+    product_id = product_data["id"]
+
+    response = api_product.get_product_by_id(playwright, product_id, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
     response_body = response.json()
     response_body["qty"] = 15
@@ -135,6 +152,9 @@ def test_update_product_quantity(playwright: Playwright):
     actual_product_qty = response_body[0]["qty"]
     assert actual_product_qty == 15
 
+    response = api_product.delete_product_by_id(playwright, product_id, site_token, api_token)
+    assert response.ok, f"API request failed with status {response.status}: {response.text()}"
+
 
 @pytest.mark.smoke
 def test_update_product_old_price(playwright: Playwright):
@@ -142,9 +162,19 @@ def test_update_product_old_price(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
-    response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
+    payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
+    json_data = payloads_list[0]["product"][0]["create_product_with_only_req_data"]
+
+    response = api_product.create_product(playwright, json_data, site_token, api_token)
+    assert response.ok, f"API request failed with status {response.status}: {response.text()}"
+    response_body = response.json()
+    product_data = response_body[0]
+    product_id = product_data["id"]
+
+    response = api_product.get_product_by_id(playwright, product_id, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
     response_body = response.json()
     response_body["old_price"] = "7001"
@@ -156,6 +186,8 @@ def test_update_product_old_price(playwright: Playwright):
     actual_old_price = response_body[0]["old_price"]
     assert actual_old_price == "7001.00"
 
+    response = api_product.delete_product_by_id(playwright, product_id, site_token, api_token)
+    assert response.ok, f"API request failed with status {response.status}: {response.text()}"
 
 @pytest.mark.smoke
 def test_update_product_old_price_empty(playwright: Playwright):
@@ -163,8 +195,9 @@ def test_update_product_old_price_empty(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
     response_body = response.json()
@@ -185,8 +218,9 @@ def test_update_product_specifications_to_have_data(playwright: Playwright):
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     json_data = payloads_list[0]["product"][0]["create_product_with_full_data"]
 
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
@@ -210,8 +244,9 @@ def test_update_product_specifications_to_be_empty(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
 
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
@@ -234,8 +269,9 @@ def test_update_product_names(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
 
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
@@ -271,8 +307,9 @@ def test_update_product_category(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
 
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
@@ -296,8 +333,9 @@ def test_update_product_all_fields(playwright: Playwright):
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     json_data = payloads_list[0]["product"][0]["create_product_with_full_data"]
 
     response = api_product.update_one_key_of_product_with_id(playwright, json_data, site_token, api_token)
@@ -352,8 +390,9 @@ def test_update_product_brand(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
 
     response = api_product.get_product_by_id(playwright, "132812", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
@@ -373,8 +412,9 @@ def test_update_product_with_old_price_null(playwright: Playwright):
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     json_data = payloads_list[0]["product"][0]["create_product_with_only_req_data"]
 
     response = api_product.create_product(playwright, json_data, site_token, api_token)
@@ -393,8 +433,9 @@ def test_update_product_with_group_id_null(playwright: Playwright):
     api_product = APIProduct()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
+    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
 
     response = api_product.get_product_by_id(playwright, "132828", site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
