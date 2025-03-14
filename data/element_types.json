@@ -1,0 +1,24 @@
+{
+  "elements": [
+    {
+      "mainUiInterface": [
+        {
+          "mainNavigationType": [
+            {
+              "view_1": "main_nav_default"
+            },
+            {
+              "view_2": "main_nav_custom"
+            },
+            {
+              "view_3_uniplast": "main_nav_uniplast"
+            },
+            {
+              "view_4_casadeltabaco": "main_nav_casadeltabaco"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

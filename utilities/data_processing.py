@@ -85,3 +85,32 @@ class DataProcessing:
         for site in site_list:
             if site["project"] == site_name:
                 return site
+
+    def get_value_by_key(self, data, target_key):
+        """
+        Recursively searches for a key in a nested dictionary/list and returns its value.
+
+        :param data: The JSON data (dictionary or list).
+        :param target_key: The key whose value is being searched for.
+        :return: The value of the target_key if found, otherwise None.
+        """
+        # Если data - это список, рекурсивно проверяем каждый элемент
+        if isinstance(data, list):
+            for item in data:
+                result = self.get_value_by_key(item, target_key)
+                if result:
+                    return result
+
+        # Если data - это словарь, проверяем наличие ключа
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                if key == target_key:
+                    return value
+                # Если ключ не найден, но значение является словарем или списком, продолжаем искать
+                elif isinstance(value, (dict, list)):
+                    result = self.get_value_by_key(value, target_key)
+                    if result:
+                        return result
+
+        return None  # Возвращаем None, если ключ не найден
+
