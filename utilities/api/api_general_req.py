@@ -17,13 +17,12 @@ class APIGeneral:
 
         return response
 
-    def clear_site_cache(self, playwright: Playwright, site_id: str, site_token: str):
+    def clear_site_cache(self, playwright: Playwright, site_id: str):
         """
         Performs an API request to clear the site cache.
 
         :param site_id:
         :param playwright: Playwright object used to create the API request context.
-        :param site_token: Identifier specifying which site will be loaded
         :return: JSON response containing the result of the cache clearing.
         :raises AssertionError: If the API response is not successful. (response.ok == False).
         """
@@ -36,7 +35,6 @@ class APIGeneral:
                 "group_id": site_id
             },
             headers={
-                "token": site_token,
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         )
