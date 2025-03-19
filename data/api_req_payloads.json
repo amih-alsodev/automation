@@ -240,6 +240,34 @@
             }
           ]
         }
+      ],
+      "order": [
+        {
+          "cart": [
+            {
+              "cart_paypal_req_fields": {
+                "cart": {
+                  "products": [
+                    {
+                      "product": {
+                        "productId": 132443
+                      },
+                      "count": 1
+                    }
+                  ]
+                },
+                "name": "testing testing",
+                "phone": "+37323423423",
+                "email": "testing@testing.dd",
+                "paymentType": "card",
+                "payment_system": "paypal",
+                "deliveryType": "pickup",
+                "shop_id": 229,
+                "comments": "testing alsodev delete this order"
+              }
+            }
+          ]
+        }
       ]
     }
   ]

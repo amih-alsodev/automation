@@ -34,7 +34,35 @@
             "name_uk"
           ]
         }
-      }
+      },
+      "cart": [
+        {
+          "paypal": {
+            "type": "object",
+            "properties": {
+              "created_new_user": {
+                "type": "boolean"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "message": {
+                "type": "string"
+              },
+              "order_id": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "created_new_user",
+              "url",
+              "message",
+              "order_id"
+            ]
+          }
+        }
+      ]
     }
   ]
 }
