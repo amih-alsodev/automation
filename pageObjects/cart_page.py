@@ -54,3 +54,39 @@ class CartPage:
             '-card__btns__decrease.delete')
         self.view_two_product_card_plus_button = page.locator(
             '.plank-card__btns__increase.ui-action-btn.--dark.--only-icon.--size-small.--fit-content')
+        # Change the locator for view_two_product_card_minus_button when the testing attribute will be added
+        self.view_two_product_card_minus_button = page.locator(
+            '.plank-card__btns__decrease.ui-action-btn.--dark.--only-icon.--size-small.--fit-content.plank'
+            '-card__btns__decrease')
+        # Change the locator for view_two_name_input when the testing attribute will be added
+        self.view_two_name_input = page.locator('[data-fetch-key="MyInput:0"] input')
+        self.view_two_email_input = page.locator('.ui-input__field [type="email"]')
+        # Change the locator for view_two_delivery_type_pickup when the testing attribute will be added
+        self.view_two_delivery_type_pickup = page.locator('')
+        # Change the locator for view_two_delivery_type_address when the testing attribute will be added
+        self.view_two_delivery_type_address = page.locator('')
+        self.view_two_delivery_type_address_region_dropdown_menu = page.locator('#vs1__combobox')
+        self.view_two_delivery_type_address_region_dropdown_list = page.locator('#vs1__listbox')
+        self.view_two_delivery_type_address_locality_dropdown_menu_status_disable = page.locator(
+            '.order-form__content__segment__content__inputs .ui-select.--gray.disabled.focus')
+        self.view_two_delivery_type_address_locality_dropdown_menu = page.locator('#vs2__combobox')
+        self.view_two_delivery_type_address_locality_dropdown_list = page.locator('#vs2__listbox')
+        # Change the locator for view_two_promocode_input when the testing attribute will be added
+        self.view_two_promocode_input = page.locator('[data-fetch-key="MyInput:3"] input')
+        # Change the locator for view_two_comment_input when the testing attribute will be added
+        self.view_two_comment_input = page.locator('[data-fetch-key="MyInput:4"] input')
+        self.view_two_agree_checkbox = page.locator('.ui-checkbox .ui-checkbox__area')
+        self.view_two_create_order_button = page.locator('[type="submit"]')
+        self.view_four_product_list_tab = page.locator('#cart-tab')
+        self.view_four_personal_data_tab = page.locator('#personal-info-tab')
+        self.view_four_delivery_tab = page.locator('#delivery-tab')
+        self.view_four_payment_tab = page.locator('#pay-tab')
+        self.view_four_product_card_delete_button = page.locator('.product__info .btn__delete')
+        self.view_four_product_card_minus_button_status_disabled = page.locator(
+            '.product__footer .item__control.minus.disabled')
+        self.view_four_product_card_minus_button = page.locator('.product__footer .item__control.minus')
+        self.view_four_product_card_plus_button = page.locator('.product__footer .item__control.plus')
+        self.view_four_agree_checkbox = page.locator('#term')
+        self.view_four_continue_button = page.locator('.summary-sidebar__action .request')
+        
+        self.view_four_email_input = page.locator('.personal-information-step [type="email"]')
