@@ -9,13 +9,15 @@ def test_create_category(playwright):
     data_processing = DataProcessing()
     api_category = APICategory()
 
-    site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
-    payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
-    json_data = payloads_list[0]["category"][0]["create_category_with_data"]
+    sites_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    site_data = data_processing.get_value_by_key(sites_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
 
-    response = api_category.create_category(playwright, json_data, site_token, api_token)
+    payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
+    payload = data_processing.get_value_by_key(payloads_list, "create_category_with_data")
+
+    response = api_category.create_category(playwright, payload, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
 
     response_body = response.json()
@@ -32,10 +34,12 @@ def test_create_category_with_empty_data(playwright):
     data_processing = DataProcessing()
     api_category = APICategory()
 
-    site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    sites_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    site_data = data_processing.get_value_by_key(sites_list, "used.md")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
+
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
     json_data = payloads_list[0]["category"][0]["create_category_with_empty_data"]
 
     response = api_category.create_category(playwright, json_data, site_token, api_token)
@@ -48,10 +52,12 @@ def test_create_two_categories(playwright):
     data_processing = DataProcessing()
     api_category = APICategory()
 
-    site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    sites_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    site_data = data_processing.get_value_by_key(sites_list, "used.md")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
+
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
     json_data = payloads_list[0]["category"][0]["create_two_categories"]
 
     response = api_category.create_category(playwright, json_data, site_token, api_token)

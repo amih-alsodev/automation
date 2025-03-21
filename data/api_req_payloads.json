@@ -3,44 +3,43 @@
     {
       "category": [
         {
-          "create_category_with_data": [
-            {
-              "position": 10,
-              "name_ro": "test category_creation_ro",
-              "name_ru": "test category_creation_ru",
-              "name_en": "test category_creation_en",
-              "name_uk": "test category_creation_uk",
-              "slug_ro": null,
-              "slug_ru": null,
-              "slug_en": null,
-              "slug_uk": null,
-              "hide": false,
-              "description_ro": "test category_description creation_ro",
-              "description_ru": "test category_description creation_ru",
-              "description_en": "test category_description creation_en",
-              "description_uk": "test category_description creation_uk",
-              "description_position": null,
-              "group_category_id": null,
-              "meta_description_ro": null,
-              "meta_description_ru": null,
-              "meta_description_en": null,
-              "meta_description_uk": null,
-              "meta_title_ro": null,
-              "meta_title_ru": null,
-              "meta_title_en": null,
-              "meta_title_uk": null,
-              "meta_keywords_ro": null,
-              "meta_keywords_ru": null,
-              "meta_keywords_en": null,
-              "meta_keywords_uk": null,
-              "show_18_popup": false,
-              "category_id": null
-            }
-          ],
-          "create_category_with_empty_data": [
-            {
-            }
-          ],
+          "create_category_with_data": {
+            "position": 10,
+            "name_ro": "test category_creation_ro",
+            "name_ru": "test category_creation_ru",
+            "name_en": "test category_creation_en",
+            "name_uk": "test category_creation_uk",
+            "slug_ro": null,
+            "slug_ru": null,
+            "slug_en": null,
+            "slug_uk": null,
+            "hide": false,
+            "description_ro": "test category_description creation_ro",
+            "description_ru": "test category_description creation_ru",
+            "description_en": "test category_description creation_en",
+            "description_uk": "test category_description creation_uk",
+            "description_position": null,
+            "group_category_id": null,
+            "meta_description_ro": null,
+            "meta_description_ru": null,
+            "meta_description_en": null,
+            "meta_description_uk": null,
+            "meta_title_ro": null,
+            "meta_title_ru": null,
+            "meta_title_en": null,
+            "meta_title_uk": null,
+            "meta_keywords_ro": null,
+            "meta_keywords_ru": null,
+            "meta_keywords_en": null,
+            "meta_keywords_uk": null,
+            "show_18_popup": false,
+            "category_id": null
+          }
+        },
+        {
+          "create_category_with_empty_data": {}
+        },
+        {
           "create_two_categories": [
             {
               "position": 10,
@@ -108,139 +107,140 @@
             }
           ]
         }
-      ],
+      ]
+    },
+    {
       "specification": [
         {
-          "create_specification_with_data": [
-            {
-              "name_ro": "test create specification ro",
-              "name_ru": "test create specification ru",
-              "name_en": "test create specification en",
-              "name_uk": "test create specification uk"
-            }
-          ]
+          "create_specification_with_data": {
+            "name_ro": "test create specification ro",
+            "name_ru": "test create specification ru",
+            "name_en": "test create specification en",
+            "name_uk": "test create specification uk"
+          }
         }
-      ],
+      ]
+    },
+    {
       "product": [
         {
-          "create_product_with_only_req_data": [
-            {
-              "price": "899.00",
-              "name_ro": "test create new product ro",
-              "group_product_id": "test group id",
-              "specifications": [],
-              "category": [
-                19
-              ]
-            }
-          ],
-          "create_product_with_full_data": [
-            {
-              "bookmark": "True",
-              "price": "1200.00",
-              "qty": 12,
-              "sort_priority": 12,
-              "old_price": "2200.00",
-              "group_product_id": "12344",
-              "weight": 12,
-              "height": 12,
-              "width": 12,
-              "length": 12,
-              "brand_id": "12833",
-              "keywords": "test keyword one, test keyword two",
-              "specifications": [
-                {
-                  "id": 752,
-                  "specification_id": 26,
-                  "specification_value_id": 90
-                },
-                {
-                  "id": 753,
-                  "specification_id": 27,
-                  "specification_value_id": 22
-                },
-                {
-                  "id": 754,
-                  "specification_id": 28,
-                  "specification_value_id": 23
-                },
-                {
-                  "id": 755,
-                  "specification_id": 29,
-                  "specification_value_id": 24
-                },
-                {
-                  "id": 756,
-                  "specification_id": 30,
-                  "specification_value_id": 25
-                },
-                {
-                  "id": 757,
-                  "specification_id": 36,
-                  "specification_value_id": 26
-                },
-                {
-                  "id": 758,
-                  "specification_id": 67,
-                  "specification_value_id": 27
-                },
-                {
-                  "id": 759,
-                  "specification_id": 15,
-                  "specification_value_id": 317
-                },
-                {
-                  "id": 760,
-                  "specification_id": 33,
-                  "specification_value_id": 560
-                }
-              ],
-              "name_ro": "test create new product ro",
-              "name_ru": "test create new product ru",
-              "name_en": "test create new product en",
-              "name_uk": "test create new product uk",
-              "short_description_ro": "test create new product short description ro",
-              "short_description_ru": "test create new product short description ru",
-              "short_description_en": "test create new product short description en",
-              "short_description_uk": "test create new product short description uk",
-              "description_ro": "test create new product description ro",
-              "description_ru": "test create new product description ru",
-              "description_en": "test create new product description en",
-              "description_uk": "test create new product description uk",
-              "unit_measurement_ro": "test unit ro",
-              "unit_measurement_ru": "test unit ru",
-              "unit_measurement_en": "test unit en",
-              "unit_measurement_uk": "test unit uk",
-              "seo_title_ro": "test seo title ro",
-              "seo_title_ru": "test seo title ru",
-              "seo_title_en": "test seo title en",
-              "seo_title_uk": "test seo title uk",
-              "seo_description_ro": "test seo description ro",
-              "seo_description_ru": "test seo description ru",
-              "seo_description_en": "test seo description en",
-              "seo_description_uk": "test seo description uk",
-              "seo_keywords_ro": "test seo keywords ro",
-              "seo_keywords_ru": "test seo keywords ru",
-              "seo_keywords_en": "test seo keywords en",
-              "seo_keywords_uk": "test seo keywords uk",
-              "code": "1234",
-              "category": [
-                19
-              ],
-              "images": [
-                {
-                  "order": 1,
-                  "original_name": "0c6d6e82c00d422eb001c9439bde4145.png"
-                }
-              ]
-            }
-          ],
-          "create_product_with_empty_data": [
-            {
-            }
-          ]
+          "create_product_with_only_req_data": {
+            "price": "899.00",
+            "name_ro": "test create new product ro",
+            "group_product_id": "test group id",
+            "specifications": [],
+            "category": [
+              19
+            ]
+          }
+        },
+        {
+          "create_product_with_full_data": {
+            "bookmark": "True",
+            "price": "1200.00",
+            "qty": 12,
+            "sort_priority": 12,
+            "old_price": "2200.00",
+            "group_product_id": "12344",
+            "weight": 12,
+            "height": 12,
+            "width": 12,
+            "length": 12,
+            "brand_id": "12833",
+            "keywords": "test keyword one, test keyword two",
+            "specifications": [
+              {
+                "id": 752,
+                "specification_id": 26,
+                "specification_value_id": 90
+              },
+              {
+                "id": 753,
+                "specification_id": 27,
+                "specification_value_id": 22
+              },
+              {
+                "id": 754,
+                "specification_id": 28,
+                "specification_value_id": 23
+              },
+              {
+                "id": 755,
+                "specification_id": 29,
+                "specification_value_id": 24
+              },
+              {
+                "id": 756,
+                "specification_id": 30,
+                "specification_value_id": 25
+              },
+              {
+                "id": 757,
+                "specification_id": 36,
+                "specification_value_id": 26
+              },
+              {
+                "id": 758,
+                "specification_id": 67,
+                "specification_value_id": 27
+              },
+              {
+                "id": 759,
+                "specification_id": 15,
+                "specification_value_id": 317
+              },
+              {
+                "id": 760,
+                "specification_id": 33,
+                "specification_value_id": 560
+              }
+            ],
+            "name_ro": "test create new product ro",
+            "name_ru": "test create new product ru",
+            "name_en": "test create new product en",
+            "name_uk": "test create new product uk",
+            "short_description_ro": "test create new product short description ro",
+            "short_description_ru": "test create new product short description ru",
+            "short_description_en": "test create new product short description en",
+            "short_description_uk": "test create new product short description uk",
+            "description_ro": "test create new product description ro",
+            "description_ru": "test create new product description ru",
+            "description_en": "test create new product description en",
+            "description_uk": "test create new product description uk",
+            "unit_measurement_ro": "test unit ro",
+            "unit_measurement_ru": "test unit ru",
+            "unit_measurement_en": "test unit en",
+            "unit_measurement_uk": "test unit uk",
+            "seo_title_ro": "test seo title ro",
+            "seo_title_ru": "test seo title ru",
+            "seo_title_en": "test seo title en",
+            "seo_title_uk": "test seo title uk",
+            "seo_description_ro": "test seo description ro",
+            "seo_description_ru": "test seo description ru",
+            "seo_description_en": "test seo description en",
+            "seo_description_uk": "test seo description uk",
+            "seo_keywords_ro": "test seo keywords ro",
+            "seo_keywords_ru": "test seo keywords ru",
+            "seo_keywords_en": "test seo keywords en",
+            "seo_keywords_uk": "test seo keywords uk",
+            "code": "1234",
+            "category": [
+              19
+            ],
+            "images": [
+              {
+                "order": 1,
+                "original_name": "0c6d6e82c00d422eb001c9439bde4145.png"
+              }
+            ]
+          }
+        },
+        {
+          "create_product_with_empty_data": {}
         }
-      ],
+      ]
+    },
+    {
       "order": [
         {
           "cart": [
@@ -264,6 +264,32 @@
                 "deliveryType": "pickup",
                 "shop_id": 229,
                 "comments": "testing alsodev delete this order"
+              }
+            },
+            {
+              "cart_tax_req_fields": {
+                "cart": {
+                  "products": [
+                    {
+                      "product": {
+                        "productId": 132443
+                      },
+                      "count": 1
+                    }
+                  ]
+                },
+                "name": "testing testing",
+                "phone": "+37323423423",
+                "email": "testing@testing.dd",
+                "paymentType": "cash",
+                "payment_system": null,
+                "deliveryType": "pickup",
+                "shop_id": 229,
+                "comments": "testing alsodev delete this order",
+                "tax_data": {
+                  "country": "US",
+                  "zip_code": "90041"
+                }
               }
             }
           ]

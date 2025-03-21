@@ -31,3 +31,19 @@ def test_create_specification(playwright: Playwright):
     response = api_specification.delete_specification_by_id(playwright, specification_id, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
 
+
+def test_get_specification_list(playwright: Playwright):
+    data_processing = DataProcessing()
+    api_specification = APISpecification()
+
+    # site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    # payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
+    # # schemes_list = data_processing.get_list_from_file("response_schemes.json", "schemes")
+    #
+    # site_token = site_credentials_list[0]["token"]
+    # api_token = site_credentials_list[0]["external_API_token"]
+    # json_data = payloads_list[0]["specification"][0]["create_specification_with_data"]
+    # # specification_scheme = schemes_list[0]["specification"]
+    #
+    # response = api_specification.get_specifications_list(playwright, site_token, api_token)
+

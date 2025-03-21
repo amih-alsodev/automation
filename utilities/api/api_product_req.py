@@ -3,7 +3,7 @@ from playwright.sync_api import Playwright
 
 class APIProduct:
 
-    def create_product(self, playwright: Playwright, payload: dict, site_token: str, api_token: str):
+    def create_product(self, playwright: Playwright, payload, site_token: str, api_token: str):
         """
         Performs an API request to create a product.
 

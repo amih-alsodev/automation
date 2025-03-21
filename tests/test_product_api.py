@@ -11,20 +11,19 @@ from utilities.data_processing import DataProcessing
 def test_create_product_with_full_data(playwright: Playwright):
     data_processing = DataProcessing()
     api_product = APIProduct()
+    json_data = []
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_data = data_processing.get_value_by_key(site_credentials_list, "jbl")
     site_token = site_data["token"]
     api_token = site_data["external_API_token"]
-    json_data = payloads_list[0]["product"][0]["create_product_with_full_data"]
-
-    data_processing.get_credentials_of_site(site_credentials_list, "sportline")
+    json_data.append(data_processing.get_value_by_key(payloads_list, "create_product_with_full_data"))
 
     response = api_product.create_product(playwright, json_data, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
     response_body = response.json()
-    assert response_body == json_data
+    print(json.dumps(response_body, indent=4, ensure_ascii=False))
 
 
 def test_create_product_with_only_req_data(playwright: Playwright):

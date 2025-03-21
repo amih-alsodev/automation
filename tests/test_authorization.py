@@ -13,11 +13,12 @@ def test_smth(playwright):
     data_processing = DataProcessing()
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
 
-    site_data = data_processing.get_credentials_of_site(site_credentials_list, "jbl")
+    site_data = data_processing.get_value_by_key(site_credentials_list, "jbl")
     site_token = site_data["token"]
 
     response = api_general.get_global_site_settings(playwright, site_token)
-    header_type = response.json()["mainUiInterface"]["mainNavigationType"]
+    response_body = response.json()
+    header_type = data_processing.get_value_by_key(response_body, "mainNavigationType")
 
     page.goto("https://stage.ecom.md/ru")
     page.wait_for_function("() => !document.body.hasAttribute('data-n-head')", timeout=5000)

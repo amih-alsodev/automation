@@ -40,3 +40,26 @@ class APIGeneral:
         )
 
         return response
+
+
+    def get_order_data(self, playwright: Playwright, order_id: str, api_token: str):
+        """
+        Performs an API request to clear the site cache.
+
+        :param order_id: ID ot the order
+        :param playwright: Playwright object used to create the API request context.
+        :return: JSON response containing the result of the cache clearing.
+        :raises AssertionError: If the API response is not successful. (response.ok == False).
+        """
+        api_request_context = playwright.request.new_context(
+            base_url="https://stage.admin.ecom.md"
+        )
+        response = api_request_context.get(
+            f"/external/external-order/{order_id}",
+            headers={
+                "Content-Type": "application/json",
+                "API-Token": api_token
+            }
+        )
+
+        return response
