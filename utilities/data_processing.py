@@ -59,32 +59,6 @@ class DataProcessing:
         with open("../data/site_params.json", "w", encoding="utf-8") as f:
             json.dump(result, f, indent=2, ensure_ascii=False)
 
-    def get_selected_site_param_from_file(self, name):
-        """
-        Get selected site settings from the file
-
-        :param name: Site name that is listed in the file "site_params.json"
-        :return: Dictionary with site settings of selected site
-        """
-        with open("../data/site_params.json", 'r') as file:
-            data = json.load(file)
-            site_params = data["site_params"]
-
-        for param in site_params:
-            if param["name"] == name:
-                site_param = param
-                return site_param
-
-    def get_payload_from_file(self, file_name, list_title):
-        with open("../data/" + file_name + "") as f:
-            file_data = json.load(f)
-            required_list = file_data[list_title]
-        return required_list
-
-    def get_credentials_of_site(self, site_list, site_name):
-        for site in site_list:
-            if site["project"] == site_name:
-                return site
 
     def get_value_by_key(self, data, target_key):
         """

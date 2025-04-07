@@ -9,12 +9,13 @@ def test_create_specification(playwright: Playwright):
     api_specification = APISpecification()
 
     site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    site_data = data_processing.get_value_by_key(site_credentials_list, "jbl")
+    site_token = site_data["token"]
+    api_token = site_data["external_API_token"]
     payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
+    json_data = data_processing.get_value_by_key(payloads_list, "create_specification_with_data")
     schemes_list = data_processing.get_list_from_file("response_schemes.json", "schemes")
-    site_token = site_credentials_list[0]["token"]
-    api_token = site_credentials_list[0]["external_API_token"]
-    json_data = payloads_list[0]["specification"][0]["create_specification_with_data"]
-    specification_scheme = schemes_list[0]["specification"]
+    specification_scheme = data_processing.get_value_by_key(schemes_list, "specification")
 
     response = api_specification.create_specification(playwright, json_data, site_token, api_token)
     assert response.ok, f"API request failed with status {response.status}: {response.text()}"
@@ -37,13 +38,14 @@ def test_get_specification_list(playwright: Playwright):
     api_specification = APISpecification()
 
     # site_credentials_list = data_processing.get_list_from_file("site_credentials.json", "sites")
+    # site_data = data_processing.get_value_by_key(site_credentials_list, "jbl")
+    # site_token = site_data["token"]
+    # api_token = site_data["external_API_token"]
     # payloads_list = data_processing.get_list_from_file("api_req_payloads.json", "payloads")
-    # # schemes_list = data_processing.get_list_from_file("response_schemes.json", "schemes")
-    #
-    # site_token = site_credentials_list[0]["token"]
-    # api_token = site_credentials_list[0]["external_API_token"]
-    # json_data = payloads_list[0]["specification"][0]["create_specification_with_data"]
-    # # specification_scheme = schemes_list[0]["specification"]
+    # json_data = data_processing.get_value_by_key(payloads_list, "create_specification_with_data")
+    # schemes_list = data_processing.get_list_from_file("response_schemes.json", "schemes")
+    # specification_scheme = data_processing.get_value_by_key(schemes_list, "specification")
     #
     # response = api_specification.get_specifications_list(playwright, site_token, api_token)
+
 

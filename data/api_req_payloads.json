@@ -236,7 +236,9 @@
           }
         },
         {
-          "create_product_with_empty_data": {}
+          "create_product_with_empty_data": [
+            {}
+          ]
         }
       ]
     },
